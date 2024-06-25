@@ -5,8 +5,8 @@
 #include <DHT.h>
 #include <EEPROM.h>
 
-#define counterPin 7
-#define coinPin 6
+#define counterPin 18 
+#define coinPin 19
 #define buzzer1 40
 #define buzzer2 49
 #define waterlevel A0
@@ -63,13 +63,20 @@ LiquidCrystal_I2C lcd(0x27, 20, 4);
 int currentState = 0;
 int change_products = 0;
 int prodKey = -1;
-int TotalPeso = 0;
-int currentPeso = 0;
-int BeforePeso = 0;
 int restartPicking = 0;
 int beforeState = -1;
 int changingInstruction = 0;
+int checkStartPeso = 0;
+int passwordSetter = 0;
+String newPassReg = "";
+String newPassLog = "";
+String password = "";
+
 //Millis
 unsigned long idle_millis = 0;
 unsigned long selected_millis = 0;
 unsigned long peso_millis = 0;
+
+volatile int TotalPeso = 0;  
+unsigned long lastDebounceTime = 0; 
+const unsigned long debounceDelay = 50; 

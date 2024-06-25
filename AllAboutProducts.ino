@@ -22,6 +22,7 @@ void printToLcd(int changeprod){
   lcd.print((String)"Price: "+int(product[changeprod].ProductPrice));
   lcd.setCursor(0,3);
   lcd.print("Available");
+  readWaterSensor();
 }
 
 //Checking sum amount of money compared to Price
@@ -89,11 +90,9 @@ void productDetails() {
 void pickprods(char key){
   prodKey = key - '1';
   currentState = 1;
-  Serial.println("Product Picked: "+String(prodKey+1));
 }
 
 void pickedProdsDetails(){
-  Serial.println(TotalPeso);
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print(product[prodKey].ProductName);

@@ -8,7 +8,6 @@ void CheckTotalDespense(char key){
       lcd.setCursor(2, 2);
       totalProdDispense = checkLastEeprom(0, 99);
       lcd.print((String)"Total Dispense: "+totalProdDispense);
-      Serial.println((String)"Total Dispense: "+totalProdDispense);
       delay(2000);
     break;
     case '7': 
@@ -18,7 +17,6 @@ void CheckTotalDespense(char key){
       lcd.setCursor(2, 2);
       totalProdDispense = checkLastEeprom(100, 199);
       lcd.print((String)"Total Dispense: "+totalProdDispense);
-      Serial.println((String)"Total Dispense: "+totalProdDispense);
       delay(2000);
     break;
     case 'B': 
@@ -28,7 +26,6 @@ void CheckTotalDespense(char key){
       lcd.setCursor(2, 2);
       totalProdDispense = checkLastEeprom(200, 299);
       lcd.print((String)"Total Dispense: "+totalProdDispense);
-      Serial.println((String)"Total Dispense: "+totalProdDispense);
       delay(2000);
     break;
     case '8': 
@@ -38,7 +35,6 @@ void CheckTotalDespense(char key){
       lcd.setCursor(2, 2);
       totalProdDispense = checkLastEeprom(300, 399);
       lcd.print((String)"Total Dispense: "+totalProdDispense);
-      Serial.println((String)"Total Dispense: "+totalProdDispense);
       delay(2000);
     break;
     case '9': 
@@ -48,7 +44,6 @@ void CheckTotalDespense(char key){
       lcd.setCursor(2, 2);
       totalProdDispense = checkLastEeprom(400,499);
       lcd.print((String)"Total Dispense: "+totalProdDispense);
-      Serial.println((String)"Total Dispense: "+totalProdDispense);
       delay(2000);
     break;
   }

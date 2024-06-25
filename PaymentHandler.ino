@@ -1,17 +1,10 @@
-void insertCoin(){
-  unsigned long currentpesoMillis = millis();
-  if(digitalRead(counterPin) == LOW){
+void coinInserted() {
+  // Debounce the coin insertion
+  unsigned long currentTime = millis();
+  if ((currentTime - lastDebounceTime) > debounceDelay) {
     TotalPeso++;
+    Serial.print("Total Peso: ");
+    Serial.println(TotalPeso);
+    lastDebounceTime = currentTime;
   }
-  // if(currentpesoMillis - peso_millis >= 600){
-  //   peso_millis = currentpesoMillis;
-  //   if(TotalPeso != BeforePeso){
-  //     currentPeso = TotalPeso - BeforePeso;
-  //     BeforePeso = TotalPeso;
-  //   }
-  //   if(currentPeso == 4 || currentPeso == 9 || currentPeso == 19){
-  //     TotalPeso++;
-  //     BeforePeso = TotalPeso;
-  //   }
-  // }
 }
