@@ -68,10 +68,9 @@ int beforeState = -1;
 int changingInstruction = 0;
 int checkStartPeso = 0;
 int passwordSetter = 0;
-String newPassReg = "";
-String newPassLog = "";
+String setPass = "";
 String password = "";
-
+bool login = false;
 //Millis
 unsigned long idle_millis = 0;
 unsigned long selected_millis = 0;

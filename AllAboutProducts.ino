@@ -92,23 +92,30 @@ void pickprods(char key){
   currentState = 1;
 }
 
-void pickedProdsDetails(){
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print(product[prodKey].ProductName);
-  lcd.setCursor(0,1);
-  lcd.print(product[prodKey].ProductPrice);
-  lcd.setCursor(0,2);
-  lcd.print("Coin/s: ");
-  lcd.print(TotalPeso);
-  if(changingInstruction == 0){
-    lcd.setCursor(0,3);
-    lcd.print("Press D to Drop");
-    changingInstruction++;
-  } else {
-    lcd.setCursor(0,3);
-    lcd.print("Press C to Cancel");
-    changingInstruction = 0;
+void pickedProdsDetails(unsigned long currentSelectedMillis){
+  if(currentSelectedMillis - selected_millis >= 5000){
+    selected_millis = currentSelectedMillis;
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.print(product[prodKey].ProductName);
+    lcd.setCursor(0,1);
+    lcd.print(product[prodKey].ProductPrice);
+    lcd.setCursor(0,2);
+    lcd.print("Coin/s: ");
+    lcd.print(TotalPeso);
+    if(changingInstruction == 0){
+      lcd.setCursor(0,3);
+      lcd.print("Press D to Drop");
+      changingInstruction++;
+    } else {
+      lcd.setCursor(0,3);
+      lcd.print("Press C to Cancel");
+      changingInstruction = 0;
+    }
   }
-  
+  if(currentSelectedMillis - selected_millis >= 300){
+    selected_millis = currentSelectedMillis;
+    lcd.setCursor(8,2);
+    lcd.print(TotalPeso);
+  }
 }

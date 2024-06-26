@@ -1,5 +1,6 @@
-void CheckTotalDespense(char key){
+void CheckTotalDespense(char key1){
   int totalProdDispense = 0;
+  char key = key1 - '1';
   switch(key){
     case '6': 
       lcd.clear();
