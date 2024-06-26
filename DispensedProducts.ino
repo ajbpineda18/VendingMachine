@@ -1,8 +1,7 @@
-void CheckTotalDespense(char key1){
+void CheckTotalDespense(char key){
   int totalProdDispense = 0;
-  char key = key1 - '1';
   switch(key){
-    case '6': 
+    case '1': 
       lcd.clear();
       lcd.setCursor(1, 1);
       lcd.print(product[0].ProductName);
@@ -11,7 +10,7 @@ void CheckTotalDespense(char key1){
       lcd.print((String)"Total Dispense: "+totalProdDispense);
       delay(2000);
     break;
-    case '7': 
+    case '2': 
       lcd.clear();
       lcd.setCursor(1, 1);
       lcd.print(product[1].ProductName);
@@ -20,7 +19,7 @@ void CheckTotalDespense(char key1){
       lcd.print((String)"Total Dispense: "+totalProdDispense);
       delay(2000);
     break;
-    case 'B': 
+    case '3': 
       lcd.clear();
       lcd.setCursor(1, 1);
       lcd.print(product[2].ProductName);
@@ -29,7 +28,7 @@ void CheckTotalDespense(char key1){
       lcd.print((String)"Total Dispense: "+totalProdDispense);
       delay(2000);
     break;
-    case '8': 
+    case '4': 
       lcd.clear();
       lcd.setCursor(1, 1);
       lcd.print(product[3].ProductName);
@@ -38,7 +37,7 @@ void CheckTotalDespense(char key1){
       lcd.print((String)"Total Dispense: "+totalProdDispense);
       delay(2000);
     break;
-    case '9': 
+    case '5': 
       lcd.clear();
       lcd.setCursor(1, 1);
       lcd.print(product[4].ProductName);

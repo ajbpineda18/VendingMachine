@@ -2,13 +2,12 @@ void loop() {
   // put your main code here, to run repeatedly:
   digitalWrite(button1, LOW);
   pisoChecker();
-  Serial.println(currentState);
   if(currentState == 0){
     char idle_key = keypad.getKey();
     if (idle_key){
       if(idle_key >= '1' && idle_key <= '5'){
         pickprods(idle_key);
-      } else if(idle_key == '*'){
+      } else if(idle_key == '#'){
         currentState = 3;
       }
     }
@@ -58,18 +57,29 @@ void loop() {
   }
   else if(currentState == 3){
     char pass_key = keypad.getKey();
-    if(login == false && password == ""){
-      passwordSetters(pass_key);
-    }
-    if(login == false && password != ""){
-      passwordChecker(pass_key);
-    }
-    if(login == true){
-      if(pass_key >= '1' && pass_key <= '5'){
-        CheckTotalDespense(pass_key);
-      } else if(pass_key = 'D'){
-        login = false;
-        currentState = 0;
+    if(pass_key){
+      Serial.println(pass_key);
+      // if(pass_key == 'A'){
+      //   resetPass = true;
+      // }
+      // if(resetPass == true && password != "") {
+      //   passwordReset(pass_key);
+      // }
+      // if(login == false && password == ""){
+      //   passwordSetters(pass_key);
+      // }
+      if(login == false && password != ""){
+        passwordChecker(pass_key);
+      }
+      if(login == true){
+        if(pass_key >= '1' && pass_key <= '5'){
+          Serial.println("Wait..");
+          CheckTotalDespense(pass_key);
+        }
+        if(pass_key == 'D'){
+          login = false;
+          currentState = 0;
+        }
       }
     }
   }

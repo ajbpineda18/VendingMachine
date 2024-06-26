@@ -69,8 +69,9 @@ int changingInstruction = 0;
 int checkStartPeso = 0;
 int passwordSetter = 0;
 String setPass = "";
-String password = "";
+String password = "2024";
 bool login = false;
+bool resetPass = false;
 //Millis
 unsigned long idle_millis = 0;
 unsigned long selected_millis = 0;
