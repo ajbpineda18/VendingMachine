@@ -5,5 +5,4 @@ void coinInserted() {
     TotalPeso++;
     lastDebounceTime = currentTime;
   }
-  
 }

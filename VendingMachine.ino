@@ -72,6 +72,8 @@ String setPass = "";
 String password = "2024";
 bool login = false;
 bool resetPass = false;
+int showPeso = -1;
+int showOnce = -1;
 //Millis
 unsigned long idle_millis = 0;
 unsigned long selected_millis = 0;
