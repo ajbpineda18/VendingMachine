@@ -8,6 +8,7 @@ void CheckTotalDespense(char key){
       lcd.setCursor(2, 2);
       totalProdDispense = checkLastEeprom(0, 99);
       lcd.print((String)"Total Dispense: "+totalProdDispense);
+      deleteKey = 0;
       delay(2000);
     break;
     case '2': 
@@ -17,6 +18,7 @@ void CheckTotalDespense(char key){
       lcd.setCursor(2, 2);
       totalProdDispense = checkLastEeprom(100, 199);
       lcd.print((String)"Total Dispense: "+totalProdDispense);
+      deleteKey = 1;
       delay(2000);
     break;
     case '3': 
@@ -26,6 +28,7 @@ void CheckTotalDespense(char key){
       lcd.setCursor(2, 2);
       totalProdDispense = checkLastEeprom(200, 299);
       lcd.print((String)"Total Dispense: "+totalProdDispense);
+      deleteKey = 2;
       delay(2000);
     break;
     case '4': 
@@ -35,6 +38,7 @@ void CheckTotalDespense(char key){
       lcd.setCursor(2, 2);
       totalProdDispense = checkLastEeprom(300, 399);
       lcd.print((String)"Total Dispense: "+totalProdDispense);
+      deleteKey = 3;
       delay(2000);
     break;
     case '5': 
@@ -44,67 +48,30 @@ void CheckTotalDespense(char key){
       lcd.setCursor(2, 2);
       totalProdDispense = checkLastEeprom(400,499);
       lcd.print((String)"Total Dispense: "+totalProdDispense);
+      deleteKey = 4;
       delay(2000);
     break;
   }
 }
 
 void ResetDispense(char key){
-  int totalProdDispense = 0;
-  switch(key){
-    case '6': 
-      productClearing(0);
-      for(int i = 0; i <= 99; i++){
-        EEPROM.update(i, 0);
-      }      
-      productCleared(0);
-    break;
-    case '7': 
-      productClearing(1);
-      for(int i = 100; i <= 199; i++){
-        EEPROM.update(i, 0);
-      }
-      productCleared(1);
-    break;
-    case '8':
-      productClearing(2);
-      for(int i = 200; i <= 299; i++){
-        EEPROM.update(i, 0);
-      }
-      productCleared(2);
-    break;
-    case '9':
-      productClearing(3);
-      for(int i = 300; i <= 399; i++){
-        EEPROM.update(i, 0);
-      }
-      productCleared(3);
-    break;
-    case '0': 
-      productClearing(4);
-      for(int i = 400; i <= 499; i++){
-        EEPROM.update(i, 0);
-      }
-      productCleared(4);
-    break;
+  productClear();
+  if(key == 'C'){
+    deleteProm();
+    deleteKey = -1;
+  } else if(key == 'A'){
+    deleteKey = -1;
   }
 }
 
-void productClearing(int index){
+void productClear(){
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print(product[4].ProductName);
+  lcd.print(product[deleteKey].ProductName);
   lcd.setCursor(0, 1);
-  lcd.print("Clearing!");
-}
-
-void productCleared(int index){
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print(product[index].ProductName);
-  lcd.setCursor(0, 1);
-  lcd.print("Successully Cleared!");
-  delay(2000);
+  lcd.print("Press C to Clear!");
+   lcd.setCursor(0, 2);
+  lcd.print("Press A to Cancel!");
 }
 
 void calculateDrop(){
@@ -155,5 +122,40 @@ void addeeprom(int min, int max){
       break;
     }
   }
+}
+
+void deleteProm(){
+  switch(deleteKey){
+      case 0: 
+        //0, 99
+        for(int i = 0; i < 100; i++){
+          EEPROM.update(i, 0);
+        }
+      break;
+      case 1:
+        //100, 199
+        for(int i = 100; i < 200; i++){
+          EEPROM.update(i, 0);
+        }
+      break;
+      case 2:
+        //200, 299
+        for(int i = 200; i < 300; i++){
+          EEPROM.update(i, 0);
+        }
+      break;
+      case 3:
+        //300, 399
+        for(int i = 300; i < 400; i++){
+          EEPROM.update(i, 0);
+        }
+      break;
+      case 4:
+        //400, 499
+        for(int i = 400; i < 500; i++){
+          EEPROM.update(i, 0);
+        }
+      break;
+    }
 }
 

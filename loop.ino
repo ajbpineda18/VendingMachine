@@ -63,26 +63,33 @@ void loop() {
   //Database part of the code
   else if(currentState == 2){
     char pass_key = keypad.getKey();
-    if(pass_key){
-      Serial.println(pass_key);
-      if(login == false){
-        passwordChecker(pass_key);
+    if(deleteKey != -1){
+      if(pass_key){
+        ResetDispense(pass_key);
       }
-      if(login == true){
-        if(pass_key >= '0' && pass_key <= '9'){
+    }
+    else{
+      if(pass_key){
+        Serial.println(pass_key);
+        if(login == false){
+          passwordChecker(pass_key);
+        }
+        if(login == true){
           lcd.clear();
           lcd.setCursor(3,0);
           lcd.print("Admin Mode: ON");
-          CheckTotalDespense(pass_key);
-          ResetDispense(pass_key);
-        }
-        if(pass_key == 'D'){
-          lcd.clear();
-          lcd.setCursor(3,0);
-          lcd.print("Admin Mode: OFF");
-          login = false;
-          currentState = 0;
-          delay(500);
+          if(pass_key >= '0' && pass_key <= '5'){
+            CheckTotalDespense(pass_key);
+          }
+          if(pass_key == 'D'){
+            lcd.clear();
+            lcd.setCursor(3,0);
+            lcd.print("Admin Mode: OFF");
+            login = false;
+            deleteKey = -1;
+            currentState = 0;
+            delay(500);
+          }
         }
       }
     }
