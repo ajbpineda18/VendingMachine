@@ -11,7 +11,6 @@ void setup() {
   }
   pinMode(relays, OUTPUT);
   pinMode(waterLed, OUTPUT);
-  digitalWrite(relays, LOW);
   for (int i = 0; i < 5; i++) {
     pinMode(leds[i], OUTPUT);
   }
@@ -20,6 +19,7 @@ void setup() {
   pinMode(waterlevel, OUTPUT);
   pinMode(button1, INPUT);
   dht.begin();
+  digitalWrite(relays, LOW);
 
   attachInterrupt(digitalPinToInterrupt(counterPin), coinInserted, FALLING);
 }

@@ -86,7 +86,6 @@ void productDetails() {
 }
 
 void pickedProdsDetails(unsigned long currentSelectedMillis){
-  Serial.print(showOnce);
   if(showOnce == 0){
     lcd.clear();
     lcd.setCursor(0,0);

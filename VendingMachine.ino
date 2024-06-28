@@ -12,7 +12,7 @@
 #define waterlevel A0
 #define relays 14
 #define button1 39
-#define DHTPIN 32
+#define DHTPIN 30
 #define DHTTYPE DHT22
 DHT dht(DHTPIN, DHTTYPE);
 
@@ -75,11 +75,12 @@ bool resetPass = false;
 int showPeso = -1;
 int showOnce = 0;
 int deleteKey = -1;
+
 //Millis
 unsigned long idle_millis = 0;
 unsigned long selected_millis = 0;
 unsigned long peso_millis = 0;
 
-volatile int TotalPeso = 0;  
-unsigned long lastDebounceTime = 0; 
-const unsigned long debounceDelay = 50; 
+volatile int TotalPeso = 0;
+unsigned long lastDebounceTime = 0;
+const unsigned long debounceDelay = 50;

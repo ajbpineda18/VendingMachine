@@ -12,7 +12,6 @@ void pisoChecker(){
     if(TotalPeso == 1){
       TotalPeso = 0;
     }
-    Serial.println(TotalPeso);
     checkStartPeso++;
   }
 }

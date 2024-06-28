@@ -18,7 +18,6 @@ void loop() {
     if (idle_key){
       if(idle_key >= '1' && idle_key <= '5'){
         prodKey = idle_key - '1';
-        Serial.print(prodKey);
         checkProdAvailability();
       } else if(idle_key == '#'){
         currentState = 2;
@@ -70,7 +69,6 @@ void loop() {
     }
     else{
       if(pass_key){
-        Serial.println(pass_key);
         if(login == false){
           passwordChecker(pass_key);
         }
