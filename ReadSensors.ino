@@ -1,6 +1,5 @@
 float readTemp(){
   int speed = fanControl(dht.readTemperature());
-  Serial.println((String)"Temp: "+dht.readTemperature());
   for (int i = 0; i < 4; i++) {
       analogWrite(externalFans[i].pwmPin, speed);
   }
@@ -8,28 +7,26 @@ float readTemp(){
 }
 
 int readHumid() {
-  Serial.println((String)"Humid: "+dht.readHumidity());
   readHumiditySensor(int(dht.readHumidity()));
   return dht.readHumidity();
 }
 
 void readWaterSensor(){
-  if(map(analogRead(waterlevel), 0, 1008, 0, 100) >= 95){
+  Serial.println(analogRead(waterlevel));
+  if(analogRead(waterlevel) > 0){
     digitalWrite(waterLed, HIGH);
-    
-  } else  {
+    tone(buzzer1, 1000);
+  } else {
     digitalWrite(waterLed, LOW);
+    noTone(buzzer1);
   }
 }
 
 void readHumiditySensor(int humids){
   if(humids >= 30 && humids <= 60){
     digitalWrite(relays, HIGH);
-    Serial.println(digitalRead(relays));
   } else  {
     digitalWrite(relays, LOW);
-    Serial.println(digitalRead(relays));
-
   }
 }
 

@@ -11,12 +11,12 @@ void setup() {
   }
   pinMode(relays, OUTPUT);
   pinMode(waterLed, OUTPUT);
+  pinMode(waterlevel, OUTPUT);
   for (int i = 0; i < 5; i++) {
     pinMode(leds[i], OUTPUT);
   }
   pinMode(buzzer1, OUTPUT);
   pinMode(buzzer2, OUTPUT);
-  pinMode(waterlevel, OUTPUT);
   pinMode(button1, INPUT);
   dht.begin();
   digitalWrite(relays, LOW);

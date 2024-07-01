@@ -9,7 +9,7 @@ void CheckTotalDespense(char key){
       totalProdDispense = checkLastEeprom(0, 99);
       lcd.print((String)"Total Dispense: "+totalProdDispense);
       deleteKey = 0;
-      delay(2000);
+      delay(1000);
     break;
     case '2': 
       lcd.clear();
@@ -19,7 +19,7 @@ void CheckTotalDespense(char key){
       totalProdDispense = checkLastEeprom(100, 199);
       lcd.print((String)"Total Dispense: "+totalProdDispense);
       deleteKey = 1;
-      delay(2000);
+      delay(1000);
     break;
     case '3': 
       lcd.clear();
@@ -29,7 +29,7 @@ void CheckTotalDespense(char key){
       totalProdDispense = checkLastEeprom(200, 299);
       lcd.print((String)"Total Dispense: "+totalProdDispense);
       deleteKey = 2;
-      delay(2000);
+      delay(1000);
     break;
     case '4': 
       lcd.clear();
@@ -39,7 +39,7 @@ void CheckTotalDespense(char key){
       totalProdDispense = checkLastEeprom(300, 399);
       lcd.print((String)"Total Dispense: "+totalProdDispense);
       deleteKey = 3;
-      delay(2000);
+      delay(1000);
     break;
     case '5': 
       lcd.clear();
@@ -49,29 +49,29 @@ void CheckTotalDespense(char key){
       totalProdDispense = checkLastEeprom(400,499);
       lcd.print((String)"Total Dispense: "+totalProdDispense);
       deleteKey = 4;
-      delay(2000);
+      delay(1000);
     break;
   }
 }
 
 void ResetDispense(char key){
-  productClear();
-  if(key == 'C'){
-    deleteProm();
-    deleteKey = -1;
-  } else if(key == 'A'){
-    deleteKey = -1;
+  if(key){
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print(product[deleteKey].ProductName);
+    lcd.setCursor(0, 1);
+    lcd.print("Press C to Clear!");
+    lcd.setCursor(0, 2);
+    lcd.print("Press B to Back!");
+    Serial.println(key);
+    if(key == 'C'){
+      deleteProm();
+      deleteKey = -1;
+    }
+    else if(key == 'B'){
+      deleteKey = -1;
+    }
   }
-}
-
-void productClear(){
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print(product[deleteKey].ProductName);
-  lcd.setCursor(0, 1);
-  lcd.print("Press C to Clear!");
-   lcd.setCursor(0, 2);
-  lcd.print("Press A to Cancel!");
 }
 
 void calculateDrop(){
@@ -125,6 +125,7 @@ void addeeprom(int min, int max){
 }
 
 void deleteProm(){
+  Serial.println(deleteKey);
   switch(deleteKey){
       case 0: 
         //0, 99

@@ -9,10 +9,10 @@ void loop() {
       product[i].ProductQuantity = 5;
     }
   }
-
   //The program will only go here if the currentState is 0
   //Showing all roducts and a way to go to database
   if(currentState == 0){
+    unsigned long currentidleMillis = millis();
     char idle_key = keypad.getKey();
     //Idle Key Reciever
     if (idle_key){
@@ -25,8 +25,7 @@ void loop() {
       idle_key = NULL;
     }
     //Total Peso Reset and Available Products 
-    unsigned long currentidleMillis = millis();
-    if(currentidleMillis - idle_millis >= 5000){
+    if(currentidleMillis - idle_millis >= 3000){
       idle_millis = currentidleMillis;
       availableProducts();
     }
@@ -36,6 +35,7 @@ void loop() {
   //The program will only go here if the currentState is 1
   //Product and payment show
   else if(currentState == 1){
+    unsigned long currentSelectedMillis = millis(); 
     char picked_key = keypad.getKey();
     if (picked_key){
       if (picked_key == 'D'){
@@ -45,7 +45,6 @@ void loop() {
           afterOrder();
       }
     }
-    unsigned long currentSelectedMillis = millis(); 
     pickedProdsDetails(currentSelectedMillis);
     if(currentSelectedMillis - selected_millis >= 60000){
       selected_millis = currentSelectedMillis;
@@ -76,7 +75,9 @@ void loop() {
           lcd.clear();
           lcd.setCursor(3,0);
           lcd.print("Admin Mode: ON");
-          if(pass_key >= '0' && pass_key <= '5'){
+          lcd.setCursor(3,2);
+          lcd.print("D - Log Out");
+          if(pass_key >= '1' && pass_key <= '5'){
             CheckTotalDespense(pass_key);
           }
           if(pass_key == 'D'){
