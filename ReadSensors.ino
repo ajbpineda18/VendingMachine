@@ -12,12 +12,16 @@ int readHumid() {
 }
 
 void readWaterSensor(){
-  Serial.println(analogRead(waterlevel));
+  //Greater than 0 water detected
   if(analogRead(waterlevel) > 0){
+    //Water Led on
     digitalWrite(waterLed, HIGH);
+    //Buzzer On
     tone(buzzer1, 1000);
   } else {
+    //Else <= 0 water led off
     digitalWrite(waterLed, LOW);
+    //Buzzer off
     noTone(buzzer1);
   }
 }

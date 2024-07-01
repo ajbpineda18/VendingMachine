@@ -45,18 +45,23 @@ void loop() {
           afterOrder();
       }
     }
-    pickedProdsDetails(currentSelectedMillis);
-    if(currentSelectedMillis - selected_millis >= 60000){
-      selected_millis = currentSelectedMillis;
+    Serial.println(reset_millis);
+    if(currentSelectedMillis - reset_millis >= 30000){
+      reset_millis = currentSelectedMillis;
+      Serial.println("I'm Here reset");
       if(restartPicking == TotalPeso){
+        Serial.println("Restart!");
         prodKey = -1;
         afterOrder();
       } else{
+        Serial.println("Restart == TOTAL PESO");
         restartPicking = TotalPeso;
       }
     }
-  }
 
+    pickedProdsDetails(currentSelectedMillis);
+    
+  }
   //The program will only go here if the currentState is 2
   //Database part of the code
   else if(currentState == 2){

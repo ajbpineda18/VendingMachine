@@ -125,7 +125,6 @@ void addeeprom(int min, int max){
 }
 
 void deleteProm(){
-  Serial.println(deleteKey);
   switch(deleteKey){
       case 0: 
         //0, 99

@@ -79,6 +79,7 @@ int deleteKey = -1;
 //Millis
 unsigned long idle_millis = 0;
 unsigned long selected_millis = 0;
+unsigned long reset_millis = 0;
 unsigned long peso_millis = 0;
 
 volatile int TotalPeso = 0;
